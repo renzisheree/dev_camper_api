@@ -1,26 +1,23 @@
 const ErrorResponse = require("../utils/errorResponse");
+const asyncHandler = require("../middleware/async");
 const Bootcamps = require("../models/Bootcamps");
 
 // @desc get all bootcamps
 // @route /api/v1/bootcamps
 // @access public
-exports.getBootcamps = async (req, res, next) => {
-  try {
-    const bootcamps = await Bootcamps.find();
+exports.getBootcamps = asyncHandler(async (req, res, next) => {
+  const bootcamps = await Bootcamps.find();
 
-    res.status(200).json({
-      success: true,
-      count: bootcamps.length,
-      data: bootcamps,
-    });
-  } catch (err) {
-    next(err);
-  }
-};
+  res.status(200).json({
+    success: true,
+    count: bootcamps.length,
+    data: bootcamps,
+  });
+});
 // @desc get bootcamp
 // @route /api/v1/bootcamps/:id
 // @access public
-exports.getBootcamp = async (req, res, next) => {
+exports.getBootcamp = asyncHandler(async (req, res, next) => {
   try {
     const bootcamp = await Bootcamps.findById(req.params.id);
     if (!bootcamp) {
@@ -32,11 +29,11 @@ exports.getBootcamp = async (req, res, next) => {
   } catch (err) {
     next(err);
   }
-};
+});
 // @desc create bootcamps
 // @route /api/v1/bootcamps
 // @access private
-exports.createBootcamps = async (req, res, next) => {
+exports.createBootcamps = asyncHandler(async (req, res, next) => {
   try {
     const bootcamp = await Bootcamps.create(req.body);
     res.status(201).json({
@@ -46,11 +43,11 @@ exports.createBootcamps = async (req, res, next) => {
   } catch (err) {
     next(err);
   }
-};
+});
 // @desc update bootcamps
 // @route /api/v1/bootcamps/:id
 // @access public
-exports.updateBootcamps = async (req, res, next) => {
+exports.updateBootcamps = asyncHandler(async (req, res, next) => {
   try {
     const bootcamp = await Bootcamps.findByIdAndUpdate(
       req.params.id,
@@ -69,11 +66,11 @@ exports.updateBootcamps = async (req, res, next) => {
   } catch (err) {
     next(err);
   }
-};
+});
 // @desc delete bootcamps
 // @route /api/v1/bootcamps/:id
 // @access private
-exports.deleteBootcamps = async (req, res, next) => {
+exports.deleteBootcamps = asyncHandler(async (req, res, next) => {
   try {
     const bootcamp = await Bootcamps.findByIdAndDelete(req.params.id);
     if (!bootcamp) {
@@ -85,4 +82,4 @@ exports.deleteBootcamps = async (req, res, next) => {
   } catch (err) {
     next(err);
   }
-};
+});
