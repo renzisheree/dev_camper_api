@@ -8,6 +8,8 @@ const {
   createBootcamps,
   getBootcampsInRadius,
 } = require("../controllers/bootcamps");
+const courseRouter = require("./courses");
+router.use("/:bootcampId/courses", courseRouter);
 router.route("/:radius/:zipcode/:distance").get(getBootcampsInRadius);
 router.route("/").get(getBootcamps).post(createBootcamps);
 
