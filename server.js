@@ -7,12 +7,14 @@ const courses = require("./routes/courses");
 const auth = require("./routes/auth");
 const morgan = require("morgan");
 const colors = require("colors");
+const cookieParse = require("cookie-parser");
 const fileUpload = require("express-fileupload");
 const connectDB = require("./config/db");
 const errorHandler = require("./middleware/error");
 
 const app = express();
 app.use(express.json());
+app.use(cookieParse());
 connectDB();
 
 if (process.env.NODE_ENV === "development") {
