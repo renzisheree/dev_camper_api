@@ -10,6 +10,7 @@ const User = require("./models/User");
 const Course = require("./models/Course");
 mongoose.connect(process.env.MONGODB_URL, {});
 
+
 const bootcamp = JSON.parse(
   fs.readFileSync(`${__dirname}/_data/bootcamps.json`, "utf-8")
 );

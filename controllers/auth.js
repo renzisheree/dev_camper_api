@@ -3,10 +3,10 @@ const ErrorResponse = require("../utils/errorResponse");
 const asyncHandler = require("../middleware/async");
 const User = require("../models/User");
 const sendEmail = require("../utils/sendEmail");
+
 // @desc Register user
 // @route POST /api/v1/auth/register
 // @access public
-
 exports.register = asyncHandler(async (req, res, next) => {
   const { name, email, password, role } = req.body;
   const user = await User.create({ name, email, password, role });
@@ -138,7 +138,7 @@ exports.updatePassword = asyncHandler(async (req, res, next) => {
   sendTokenResponse(user, 200, res);
 });
 
-//get token from model, create cookie and send reponse
+//get token from model, create cookie and send response
 
 const sendTokenResponse = (user, statusCode, res) => {
   const token = user.getSignedJwtToken();
