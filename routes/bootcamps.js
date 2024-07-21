@@ -11,9 +11,17 @@ const {
 } = require("../controllers/bootcamps");
 const Bootcamp = require("../models/Bootcamps");
 const advancedResults = require("../middleware/advanceResults");
+
 const courseRouter = require("./courses");
+const reviewRouter = require("./review");
 const { protect, authorize } = require("../middleware/auth");
+
+
 router.use("/:bootcampId/courses", courseRouter);
+router.use("/:bootcampId/reviews", reviewRouter);
+
+
+
 router.route("/:radius/:zipcode/:distance").get(getBootcampsInRadius);
 router
   .route("/")
