@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+    const mongoose = require("mongoose");
 const slugify = require("slugify");
 const geocoder = require("../utils/geocoder");
 const bootcampSchema = new mongoose.Schema(
